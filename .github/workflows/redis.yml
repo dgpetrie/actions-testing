@@ -38,7 +38,8 @@ jobs:
         # Runs a script that creates a Redis client, populates
         # the client with data, and retrieves data
         run: |
-          PING_OUT=`redis-cli -n 0 -h ${REDIS_HOST} -p ${REDIS_PORT} PING`
+          export PING_OUT=`redis-cli -n 0 -h ${REDIS_HOST} -p ${REDIS_PORT} PING`
+          echo "${PING_OUT}"
           if [ "${PING_OUT}" == "PONGY" ]; then echo "redis connection succeeded"; else echo "cli return: ${PINGOUT}"; exit 1; fi
         # Environment variables
         env:
@@ -46,3 +47,7 @@ jobs:
           REDIS_HOST: localhost
           # The default Redis port
           REDIS_PORT: 6379
+
+      - name: Test env
+        run: echo ${PING_OUT} ${REDIS_HOST} ${REDIS_PORT}
+
