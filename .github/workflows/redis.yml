@@ -37,7 +37,7 @@ jobs:
       - name: Test connection to Redis
         # Runs a script that creates a Redis client, populates
         # the client with data, and retrieves data
-        run: redis-cli -n 0 -h ${REDIS_HOST} -p ${REDIS_PORT} PING
+        run: if [ `redis-cli -n 0 -h ${REDIS_HOST} -p ${REDIS_PORT} PING` == "PONG" ]; then return 0; else return 1; fi
         # Environment variables
         env:
           # The hostname used to communicate with the Redis service container
