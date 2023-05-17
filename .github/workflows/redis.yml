@@ -15,7 +15,7 @@ jobs:
     # Service containers to run with `runner-job`
     services:
       # Label used to access the service container
-      redis-${{ python-version }}:
+      redis:
         # Docker Hub image
         image: redis
         # Set health checks to wait until redis has started
