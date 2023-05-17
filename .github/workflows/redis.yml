@@ -60,7 +60,7 @@ jobs:
           if [ "${PING_OUT}" == "PONG" ]; then echo "redis connection succeeded"; else echo "cli return: ${PING_OUT}"; exit 1; fi
           
           # confirm only one user of this server
-          if [ "redis-cli -n 0 SADD PY_V ${{ matrix.python-version }}" -eq 1 ]; then echo "no other python ${{matrix.python-version}} user of redis"; else echo "existing python ${{ matrix.python-version }} user of redis"; exit 2; fi
+          if [ "`redis-cli -n 0 SADD PY_V ${{ matrix.python-version }}`" -eq 1 ]; then echo "no other python ${{matrix.python-version}} user of redis"; else echo "existing python ${{ matrix.python-version }} user of redis"; exit 2; fi
           sleep 10
           redis-cli -n 0 SMEMBERS PY_V 
           export PY_V_COUNT=`redis-cli -n 0 SCARD PY_V`
