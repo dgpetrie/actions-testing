@@ -55,14 +55,16 @@ jobs:
         # Runs a script that creates a Redis client, populates
         # the client with data, and retrieves data
         run: |
+          # make sure we can connect and get response from redis server
           export PING_OUT=`redis-cli -n 0 -h ${REDIS_HOST} -p ${REDIS_PORT} PING`
           if [ "${PING_OUT}" == "PONG" ]; then echo "redis connection succeeded"; else echo "cli return: ${PING_OUT}"; exit 1; fi
-          redis-cli -n 0 SADD PY_V ${{ matrix.python-version }}
+          
+          # confirm only one user of this server
+          if [ "redis-cli -n 0 SADD PY_V ${{ matrix.python-version }}" -eq 1 ]; then echo "no other python ${{matrix.python-version}} user of redis"; else echo "existing python ${{ matrix.python-version }} user of redis"; exit 2; fi
           sleep 10
           redis-cli -n 0 SMEMBERS PY_V 
           export PY_V_COUNT=`redis-cli -n 0 SCARD PY_V`
           if [ "${PY_V_COUNT}" -eq 1 ]; then echo "one user of redis"; else echo "${PY_V_COUNT} users of redis"; exit 2; fi
-
 
         # Environment variables
         env:
