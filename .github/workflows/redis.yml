@@ -67,7 +67,7 @@ jobs:
       - name: Test env
         run: echo ${PING_OUT} ${REDIS_HOST} ${REDIS_PORT}
 
-      - name fix pip cache issue by creating dir
+      - name: fix pip cache issue by creating dir
         run: |
           mkdir -p -- "$(pip cache dir)"
           echo "$(pip cache dir)"
