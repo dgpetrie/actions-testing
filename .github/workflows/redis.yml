@@ -69,6 +69,9 @@ jobs:
           export PY_V_COUNT=`redis-cli -n 0 SCARD PY_V`
           if [ "${PY_V_COUNT}" -eq 1 ]; then echo "one user of redis"; else echo "${PY_V_COUNT} users of redis"; exit 2; fi
 
+          redis-cli -n 0 JSON.SET v '$' '{"a": "aaa"}'
+          redis-cli -n 0 JSON.GET v '$.a'
+          
         # Environment variables
         env:
           # The hostname used to communicate with the Redis service container
