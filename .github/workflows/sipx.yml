@@ -16,7 +16,7 @@ jobs:
       # Downloads a copy of the code in your repository before running CI tests
         uses: actions/checkout@v3
         with:
-          repository: https://github.com/sipXtapi/sipXtapi.git
+          repository: sipXtapi/sipXtapi
           
       - name: view checkout results
         run: |
