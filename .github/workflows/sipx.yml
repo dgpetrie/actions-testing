@@ -31,7 +31,7 @@ jobs:
           
       - name: build portlib
         run: |
-          cd portlib
+          cd sipXportLib
           if [ ! -f configure ] ; then autoreconf -if ; fi
           if [ ! -f Makefile ] ; then ./configure --without-openssl --without-cppunit; fi
           make
