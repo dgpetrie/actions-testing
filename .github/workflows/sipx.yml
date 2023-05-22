@@ -17,6 +17,7 @@ jobs:
         #uses: actions/checkout@v3
         run: |
           git clone https://github.com/sipXtapi/sipXtapi.git
+          ls -l
           cd sipxtapi
       
       - name: setup env
