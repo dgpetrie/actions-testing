@@ -24,7 +24,7 @@ jobs:
           
       - name: setup env
         run: |
-          export CFLAGS="-O0 -g -fPIC"
+          export CFLAGS="-O0 -g -fPIC -fpermissive"
           echo "CFLAGS: ${CFLAGS}"
           ls -l
           pwd
