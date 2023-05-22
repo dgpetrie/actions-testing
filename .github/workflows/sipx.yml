@@ -14,12 +14,14 @@ jobs:
         
       - name: checkout ${{ github.ref }}
       # Downloads a copy of the code in your repository before running CI tests
-        #uses: actions/checkout@v3
+        uses: actions/checkout@v3
+        with:
+          repository: https://github.com/sipXtapi/sipXtapi.git
+          
+      - name: view checkout results
         run: |
-          git clone https://github.com/sipXtapi/sipXtapi.git
           ls -l
-          cd sipxtapi
-      
+          
       - name: setup env
         run: |
           export CFLAGS="-O0 -g -fPIC"
