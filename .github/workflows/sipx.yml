@@ -1,0 +1,35 @@
+name: SipX Linux build
+on: push
+
+jobs:
+  # Label of the runner job
+  sipx-build-linux:
+    # You must use a Linux environment when using service containers or container jobs
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+      - name: install dev and runtime packages
+        run: apt-get install git g++ subversion gdb make libpcre3-dev autoconf automake libtool pkg-config valgrind libasound2-dev alsa-utils libssl-dev patch libspeex-dev libspandsp-dev bc
+        
+      - name: checkout ${{ github.ref }}
+      # Downloads a copy of the code in your repository before running CI tests
+        #uses: actions/checkout@v3
+        run: |
+          git clone https://github.com/sipXtapi/sipXtapi.git
+          cd sipxtapi
+      
+      - name: setup env
+        run: |
+          export CFLAGS="-O0 -g -fPIC"
+          echo "CFLAGS: ${CFLAGS}"
+          ls -l
+          pwd
+          
+      - name: build portlib
+        run: |
+          cd portlib
+          if [ ! -f configure ] ; then autoreconf -if ; fi
+          if [ ! -f Makefile ] ; then ./configure --without-openssl --without-cppunit; fi
+          make
+          make tests
