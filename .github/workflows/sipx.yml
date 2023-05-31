@@ -26,7 +26,7 @@ jobs:
         run: |
           ls -l
           
-      - name: build portlib
+      - name: build sipXportLib
         run: |
           echo CFLAGS: $CFLAGS
           cd sipXportLib
@@ -36,13 +36,57 @@ jobs:
           make
           make tests
           
-      - name: build sdplib
+      - name: build sipXsdpLib
         run: |
           echo PWD: `pwd`
           echo CFLAGS: $CFLAGS
           cd sipXsdpLib
           if [ ! -f configure ] ; then autoreconf -if ; fi
           patch configure < ../configure.patch
-          if [ ! -f Makefile ] ; then ./configure --without-openssl --without-cppunit; fi
+          if [ ! -f Makefile ] ; then ./configure --without-openssl ; fi
+          make
+          make tests
+
+      - name: build sipXtackLib
+        run: |
+          echo PWD: `pwd`
+          echo CFLAGS: $CFLAGS
+          cd sipXtackLib
+          if [ ! -f configure ] ; then autoreconf -if ; fi
+          patch configure < ../configure.patch
+          if [ ! -f Makefile ] ; then ./configure --without-openssl --disable-sipviewer; fi
+          make
+          make tests
+
+      - name: build sipXmediaLib
+        run: |
+          echo PWD: `pwd`
+          echo CFLAGS: $CFLAGS
+          cd sipXmediaLib
+          if [ ! -f configure ] ; then autoreconf -if ; fi
+          patch configure < ../configure.patch
+          if [ ! -f Makefile ] ; then ./configure --without-openssl --disable-stream-player --enable-contrib-speex --enable-speex-dsp --enable-codec-speex --enable-codec-amr --enable-codec-amrwb --enable-codec-g726 --enable-codec-g722 --enable-codec-g7221 --enable-codec-g729 --enable-codec-ilbc --enable-codec-gsm --enable-codec-opus --enable-local-audio; fi
+          make
+          make tests
+
+      - name: build sipXmediaAdapterLib
+        run: |
+          echo PWD: `pwd`
+          echo CFLAGS: $CFLAGS
+          cd sipXmediaAdapterLib
+          if [ ! -f configure ] ; then autoreconf -if ; fi
+          patch configure < ../configure.patch
+          if [ ! -f Makefile ] ; then ./configure --without-openssl --disable-stream-player --enable-contrib-speex --enable-speex-dsp --enable-codec-speex --enable-codec-amr --enable-codec-amrwb --enable-codec-g726 --enable-codec-g722 --enable-codec-g7221 --enable-codec-g729 --enable-codec-ilbc --enable-codec-gsm --enable-codec-opus --enable-local-audio; fi
+          make
+          make tests
+          
+      - name: build sipXcallLib
+        run: |
+          echo PWD: `pwd`
+          echo CFLAGS: $CFLAGS
+          cd sipXcallLib
+          if [ ! -f configure ] ; then autoreconf -if ; fi
+          patch configure < ../configure.patch
+          if [ ! -f Makefile ] ; then ./configure --without-openssl --enable-receivecall --enable-placecall; fi
           make
           make tests
