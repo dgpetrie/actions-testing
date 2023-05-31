@@ -32,7 +32,19 @@ jobs:
           
       - name: build portlib
         run: |
+          echo CFLAGS: $CFLAGS
           cd sipXportLib
+          if [ ! -f configure ] ; then autoreconf -if ; fi
+          patch configure < ../configure.patch
+          if [ ! -f Makefile ] ; then ./configure --without-openssl --without-cppunit; fi
+          make
+          make tests
+          
+      - name: build sdplib
+        run: |
+          echo PWD: `pwd`
+          echo CFLAGS: $CFLAGS
+          cd ../sipXsdpLib
           if [ ! -f configure ] ; then autoreconf -if ; fi
           patch configure < ../configure.patch
           if [ ! -f Makefile ] ; then ./configure --without-openssl --without-cppunit; fi
