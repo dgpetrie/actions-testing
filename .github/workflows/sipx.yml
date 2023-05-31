@@ -1,6 +1,9 @@
 name: SipX Linux build
 on: push
 
+env:
+  CFLAGS: "-O0 -g -fPIC -fpermissive"
+
 jobs:
   # Label of the runner job
   sipx-build-linux:
@@ -23,13 +26,6 @@ jobs:
         run: |
           ls -l
           
-      - name: setup env
-        run: |
-          export CFLAGS="-O0 -g -fPIC -fpermissive"
-          echo "CFLAGS: ${CFLAGS}"
-          ls -l
-          pwd
-          
       - name: build portlib
         run: |
           echo CFLAGS: $CFLAGS
@@ -44,7 +40,7 @@ jobs:
         run: |
           echo PWD: `pwd`
           echo CFLAGS: $CFLAGS
-          cd ../sipXsdpLib
+          cd sipXsdpLib
           if [ ! -f configure ] ; then autoreconf -if ; fi
           patch configure < ../configure.patch
           if [ ! -f Makefile ] ; then ./configure --without-openssl --without-cppunit; fi
