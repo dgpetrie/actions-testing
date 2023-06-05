@@ -16,7 +16,7 @@ jobs:
       - name: install dev and runtime packages
         run: |
           sudo apt-get install git g++ subversion gdb make libpcre3-dev autoconf automake libtool pkg-config valgrind libasound2-dev alsa-utils libssl-dev patch libspeex-dev libspandsp-dev bc unrar unzip
-          find / -name librt-2.31.so -ls 2> /dev/null; true
+          find / -name librt-2.31.so -ls 2> /dev/null || true
         
       - name: checkout ${{ github.ref }}
       # Downloads a copy of the code in your repository before running CI tests
