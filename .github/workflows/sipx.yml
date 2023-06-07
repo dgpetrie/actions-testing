@@ -3,6 +3,7 @@ on: push
 
 env:
   CFLAGS: "-O0 -g -fPIC -fpermissive"
+  MAKE_USE_CPUS: " -j 1 "
 
 jobs:
   # Label of the runner job
@@ -35,7 +36,7 @@ jobs:
           if [ ! -f configure ] ; then autoreconf -if ; fi
           patch configure < ../configure.patch
           if [ ! -f Makefile ] ; then ./configure --without-openssl --without-cppunit; fi
-          make
+          make $MAKE_USE_CPUS
           make tests
           
       - name: build sipXsdpLib
@@ -46,7 +47,7 @@ jobs:
           if [ ! -f configure ] ; then autoreconf -if ; fi
           patch configure < ../configure.patch
           if [ ! -f Makefile ] ; then ./configure --without-openssl ; fi
-          make
+          make $MAKE_USE_CPUS
           make tests
 
       - name: build sipXtackLib
@@ -57,7 +58,7 @@ jobs:
           if [ ! -f configure ] ; then autoreconf -if ; fi
           patch configure < ../configure.patch
           if [ ! -f Makefile ] ; then ./configure --without-openssl --disable-sipviewer; fi
-          make
+          make $MAKE_USE_CPUS
           make tests
 
       - name: build sipXmediaLib
@@ -68,7 +69,7 @@ jobs:
           if [ ! -f configure ] ; then autoreconf -if ; fi
           patch configure < ../configure.patch
           if [ ! -f Makefile ] ; then ./configure --without-openssl --disable-stream-player --enable-contrib-speex --enable-speex-dsp --enable-codec-speex --enable-codec-amr --enable-codec-amrwb --enable-codec-g726 --enable-codec-g722 --enable-codec-g7221 --enable-codec-g729 --enable-codec-ilbc --enable-codec-gsm --enable-codec-opus --enable-local-audio; fi
-          make
+          make $MAKE_USE_CPUS
           make tests
 
       - name: build sipXmediaAdapterLib
@@ -79,7 +80,7 @@ jobs:
           if [ ! -f configure ] ; then autoreconf -if ; fi
           patch configure < ../configure.patch
           if [ ! -f Makefile ] ; then ./configure --without-openssl --disable-stream-player --enable-contrib-speex --enable-speex-dsp --enable-codec-speex --enable-codec-amr --enable-codec-amrwb --enable-codec-g726 --enable-codec-g722 --enable-codec-g7221 --enable-codec-g729 --enable-codec-ilbc --enable-codec-gsm --enable-codec-opus --enable-local-audio; fi
-          make
+          make $MAKE_USE_CPUS
           make tests
           
       - name: build sipXcallLib
@@ -90,5 +91,5 @@ jobs:
           if [ ! -f configure ] ; then autoreconf -if ; fi
           patch configure < ../configure.patch
           if [ ! -f Makefile ] ; then ./configure --without-openssl --enable-receivecall --enable-placecall; fi
-          make
+          make $MAKE_USE_CPUS
           make tests
