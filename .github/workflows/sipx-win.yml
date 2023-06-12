@@ -20,5 +20,4 @@ jobs:
           $env:Path
           echo $SHELL
           python3 --version
-          VsMSBuildCmd.bat -?
-        #-arch=x64 -winsdk=10.0.19041.0
+          VsMSBuildCmd.bat -arch=x64 -winsdk=10.0.19041.0
