@@ -15,5 +15,7 @@ jobs:
     
       - name: check env
         run: |
-          echo %PATH%
+          echo $PATH
+          echo $SHELL
           python3 --version
+          dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsMSBuildCmd.bat"
