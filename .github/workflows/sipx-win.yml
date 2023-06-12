@@ -15,9 +15,10 @@ jobs:
     
       - name: check env
         run: |
-          echo $PATH
-          echo $path
+          $Env:Path
+          $Env:Path = "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools; $Env:Path"
+          $env:Path
           echo $SHELL
           python3 --version
-          "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsMSBuildCmd.bat" -help
+          VsMSBuildCmd.bat -?
         #-arch=x64 -winsdk=10.0.19041.0
