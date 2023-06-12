@@ -21,3 +21,16 @@ jobs:
           echo $SHELL
           python3 --version
           VsMSBuildCmd.bat -arch=x64 -winsdk=10.0.19041.0
+
+      - name: checkout ${{ github.ref }}
+        # Downloads a copy of the code in your repository before running CI tests
+        uses: actions/checkout@v3
+        with:
+          repository: sipXtapi/sipXtapi
+          
+      - name: MSVS build
+        run: |
+          $Env.Path
+          (Get-Item .).FullName
+          msbuild.exe sipX-msvc16.sln /t:Clean,Build /p:Configuration=Release /p:Platform=x64
+      
