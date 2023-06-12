@@ -1,0 +1,20 @@
+name: SipX Windows build
+on: push
+
+env:
+  CFLAGS: "-O0 -g -fPIC -fpermissive"
+  MAKE_USE_CPUS: " -j 1 "
+
+jobs:
+  # Label of the runner job
+  sipx-build-windows:
+
+    runs-on: windows-2019
+    
+    steps:
+    
+      - name: check env
+        run: |
+          echo %PATH%
+          dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsMSBuildCmd.bat"
+          python3 --version
