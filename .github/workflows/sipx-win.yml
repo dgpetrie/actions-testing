@@ -19,4 +19,5 @@ jobs:
           echo $path
           echo $SHELL
           python3 --version
-          C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsMSBuildCmd.bat -arch=x64 -winsdk=10.0.19041.0
+          "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsMSBuildCmd.bat" -help
+        #-arch=x64 -winsdk=10.0.19041.0
