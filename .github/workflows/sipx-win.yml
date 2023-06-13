@@ -20,7 +20,12 @@ jobs:
           $env:Path
           echo $SHELL
           python3 --version
-          VsMSBuildCmd.bat -arch=x64 -winsdk=10.0.19041.0
+
+      - name: env cmd
+        run: |
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsMSBuildCmd.bat"
+          echo %PATH%
+        shell: cmd
 
       - name: checkout ${{ github.ref }}
         # Downloads a copy of the code in your repository before running CI tests
@@ -30,7 +35,10 @@ jobs:
           
       - name: MSVS build
         run: |
-          $Env.Path
-          (Get-Item .).FullName
+          echo %PATH%
+          VsMSBuildCmd.bat -arch=x64 -winsdk="10.0.19041.0"
+          dir
           msbuild.exe sipX-msvc16.sln /t:Clean,Build /p:Configuration=Release /p:Platform=x64
+        shell: cmd
+
       
