@@ -79,7 +79,7 @@ jobs:
           cd sipXmediaAdapterLib
           if [ ! -f configure ] ; then autoreconf -if ; fi
           patch configure < ../configure.patch
-          if [ ! -f Makefile ] ; then ./configure --enable-topology-graph --without-openssl --enable-contrib-speex --enable-speex-dsp --disable-stream-player --enable-alsa-audio  --enable-codec-amr --enable-codec-amrwb --enable-codec-g726 --enable-codec-ilbc --enable-codec-gsm --enable-codec-opus --enable-local-audio; fi
+          if [ ! -f Makefile ] ; then ./configure --enable-topology-graph --without-openssl --enable-contrib-speex --enable-speex-dsp --disable-stream-player --enable-alsa-audio --enable-codec-gsm; fi
           make $MAKE_USE_CPUS
           make tests
           
