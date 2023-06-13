@@ -35,6 +35,7 @@ jobs:
           
       - name: MSVS build
         run: |
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsMSBuildCmd.bat"
           echo %PATH%
           VsMSBuildCmd.bat -arch=x64 -winsdk="10.0.19041.0"
           dir
