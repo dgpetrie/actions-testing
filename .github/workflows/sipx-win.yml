@@ -16,11 +16,11 @@ jobs:
           - os: windows-2019
             solution_file: sipX-msvc16.sln
             msvs_year: 2019
-            prog_root: "C:\Program Files (x86)"
+            prog_root: "C/:\Program Files (x86)"
           - os: windows-2022
             solution_file: sipX-msvc17.sln
             msvs_year: 2022
-            prog_root: "C:\Program Files"
+            prog_root: "C/:\Program Files"
 
     runs-on: ${{ matrix.os }}
     
