@@ -16,11 +16,11 @@ jobs:
           - os: windows-2019
             solution_file: sipX-msvc16.sln
             msvs_year: 2019
-            prog_root: "C/:\Program Files (x86)"
+            prog_root: "\Program Files (x86)"
           - os: windows-2022
             solution_file: sipX-msvc17.sln
             msvs_year: 2022
-            prog_root: "C/:\Program Files"
+            prog_root: "\Program Files"
 
     runs-on: ${{ matrix.os }}
     
@@ -29,7 +29,7 @@ jobs:
       - name: check env ${{ runner.os }}
         run: |
           $Env:Path
-          $Env:Path = "${{ matrix.prog_root }}\Microsoft Visual Studio\${{ matrix.msvs_year }}\Enterprise\Common7\Tools; $Env:Path"
+          $Env:Path = "C:${{ matrix.prog_root }}\Microsoft Visual Studio\${{ matrix.msvs_year }}\Enterprise\Common7\Tools; $Env:Path"
           $env:Path
           echo $SHELL
           python3 --version
@@ -37,7 +37,7 @@ jobs:
       - name: env cmd ${{ runner.os }}
         run: |
           systeminfo | findstr /B /C:"OS Name" /B /C:"OS Version"
-          call "${{ matrix.prog_root }}\Microsoft Visual Studio\${{ matrix.msvs_year }}\Enterprise\Common7\Tools\VsMSBuildCmd.bat"
+          call "C:${{ matrix.prog_root }}\Microsoft Visual Studio\${{ matrix.msvs_year }}\Enterprise\Common7\Tools\VsMSBuildCmd.bat"
           echo %PATH%
         shell: cmd
 
@@ -50,7 +50,7 @@ jobs:
       #VsMSBuildCmd.bat -arch=x64 -winsdk="10.0.19041.0"
       - name: MSVS ${{ runner.os }} build
         run: |
-          call "${{ matrix.prog_root }}\Microsoft Visual Studio\${{ matrix.msvs_year }}\Enterprise\Common7\Tools\VsMSBuildCmd.bat"  -arch=x64
+          call "$C:{{ matrix.prog_root }}\Microsoft Visual Studio\${{ matrix.msvs_year }}\Enterprise\Common7\Tools\VsMSBuildCmd.bat"  -arch=x64
           echo %PATH%
           dir
           msbuild.exe ${{ matrix.solution_file }} /t:Clean,Build /p:Configuration=Release /p:Platform=x64
