@@ -7,7 +7,7 @@ env:
 
 jobs:
   # Label of the runner job
-  sipx-build-windows:
+  sipx-build:
 
     strategy:
       fail-fast: false
@@ -34,7 +34,8 @@ jobs:
 
       - name: env cmd ${{ runner.os }}
         run: |
-          dir "C:\Program Files (x86)\Microsoft Visual Studio\${{ matrix.msvs_year }}\Enterprise"
+          dir "C:\Program Files (x86)\Microsoft Visual Studio"
+          dir "C:\Program Files (x86)\Microsoft Visual Studio\${{ matrix.msvs_year }}"
           call "C:\Program Files (x86)\Microsoft Visual Studio\${{ matrix.msvs_year }}\Enterprise\Common7\Tools\VsMSBuildCmd.bat"
           echo %PATH%
         shell: cmd
