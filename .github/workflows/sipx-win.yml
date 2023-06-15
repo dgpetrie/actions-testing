@@ -34,8 +34,9 @@ jobs:
 
       - name: env cmd ${{ runner.os }}
         run: |
-          dir "C:\Program Files (x86)\Microsoft Visual Studio"
-          dir "C:\Program Files (x86)\Microsoft Visual Studio\${{ matrix.msvs_year }}"
+          systeminfo | findstr /B /C:"OS Name" /B /C:"OS Version"
+          dir "C:\Program Files (x86)\Microsoft Visual Studio\Installer"
+          dir "C:\Program Files (x86)\Microsoft Visual Studio\Shared"
           call "C:\Program Files (x86)\Microsoft Visual Studio\${{ matrix.msvs_year }}\Enterprise\Common7\Tools\VsMSBuildCmd.bat"
           echo %PATH%
         shell: cmd
