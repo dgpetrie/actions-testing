@@ -56,4 +56,9 @@ jobs:
           msbuild.exe ${{ matrix.solution_file }} /t:Clean,Build /p:Configuration=Release /p:Platform=x64
         shell: cmd
 
+      - name: check binaries
+        run: |
+          dir sipXportLib
+          dir sipXportLIb/bin
+        shell: cmd
       
