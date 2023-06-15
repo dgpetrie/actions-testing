@@ -50,7 +50,7 @@ jobs:
       #VsMSBuildCmd.bat -arch=x64 -winsdk="10.0.19041.0"
       - name: MSVS ${{ runner.os }} build
         run: |
-          call "$C:{{ matrix.prog_root }}\Microsoft Visual Studio\${{ matrix.msvs_year }}\Enterprise\Common7\Tools\VsMSBuildCmd.bat"  -arch=x64
+          call "C:${{ matrix.prog_root }}\Microsoft Visual Studio\${{ matrix.msvs_year }}\Enterprise\Common7\Tools\VsMSBuildCmd.bat"  -arch=x64
           echo %PATH%
           dir
           msbuild.exe ${{ matrix.solution_file }} /t:Clean,Build /p:Configuration=Release /p:Platform=x64
