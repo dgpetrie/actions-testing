@@ -58,7 +58,7 @@ jobs:
 
       - name: check binaries
         run: |
-          dir sipXportLib
-          dir sipXportLIb/bin
+          dir sipXportLib\x64
+          dir sipXportLIb\bin
         shell: cmd
       
