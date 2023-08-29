@@ -1,4 +1,3 @@
-# Test Readme
 ## vcon.filter_plugins.impl.whisper.Whisper
 
   **FilterPlugin** to generate transcriptions for a **Vcon**
@@ -6,7 +5,7 @@
 
 **Methods**:
 
-###\_\_init__
+### \_\_init__
 \_\_init__(self, init_options: vcon.filter_plugins.impl.whisper.WhisperInitOptions)
 
 Parameters:
@@ -15,7 +14,7 @@ Parameters:
 
 **init_options** - vcon.filter_plugins.impl.whisper.WhisperInitOptions
 
-###filter(self, in_vcon: vcon.Vcon, options: vcon.filter_plugins.impl.whisper.WhisperOptions) -> vcon.Vcon
+### filter(self, in_vcon: vcon.Vcon, options: vcon.filter_plugins.impl.whisper.WhisperOptions) -> vcon.Vcon
 
 
 Transcribe recording dialogs in given Vcon using the Whisper implementation
@@ -38,9 +37,10 @@ Returns:
 
 **options** - vcon.filter_plugins.impl.whisper.WhisperOptions
 
-###\_\_del__(self)
+### \_\_del__(self)
 
 
 Teardown/uninitialization method for the plugin
 
 Parameters: None
+
