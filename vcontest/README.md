@@ -34,6 +34,25 @@ Parameters:
 Returns:
   the modified Vcon with added analysis objects for the transcription.
 
+### set_party_parameter
+
+**set_party_parameter**(self, parameter_name: 'str', parameter_value: 'str', party_index: 'int' = -1) -> 'int'
+
+
+Set the named parameter for the given party index.  If the index is not provided,
+add a new party to the vCon Parties Object array.
+
+Parameters:
+  **parameter_name** (String) - name of the Party Object parameter to be set.
+              Must beone of the following: ["tel", "stir", "mailto", "name", "validation", "gmlpos", "timezone"]
+  **parameter_value** (String) - new value to set for the named parameter
+  **party_index** (int) - index of party to set tel url on
+              (-1 indicates a new party should be added)
+
+Returns:
+int: if success, positive int index of party in list
+
+
 
 **options** - vcon.filter_plugins.impl.whisper.WhisperOptions
 
